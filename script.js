@@ -54,12 +54,6 @@ function generatePassword() {
     return result;
  }
  
-console.log(lengthOfPassword);
-console.log(capital);
-console.log(lowercase);
-console.log(numbers);
-console.log(specialCharacters);
-
 // Write password to the #password input
 function writePassword() {
     var password = generatePassword();
@@ -67,15 +61,23 @@ function writePassword() {
 
     passwordText.value = password;
 
-    copyBtn.removeAttribute("disabled");
-    copyBtn.focus();
+    //copyBtn.removeAttribute("disabled");
+    //copyBtn.focus();
 }
 
 function copyToClipboard() {
-    // BONUS 
-}
+
+    var copyText = document.getElementById("password");
+
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); 
+
+    document.execCommand("copy");
+    alert("Copied the text: " + copyText.value);
+} 
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+copyBtn.addEventListener("click", copyToClipboard);
 
 // BONUS EVENT LISTENER
